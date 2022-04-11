@@ -4,25 +4,7 @@ import MyButton from "./components/UI/button/MyButton";
 import MyInput from "./components/UI/input/MyInput";
 import "./styles/app.css";
 
-function App() {
-  const [title, setTitle] = useState("");
-  const [description, setDescription] = useState("");
-  const addNewPosts = (e) => {
-    e.preventDefault();
-    console.log(title);
-    console.log(description);
-
-    const newPost = {
-      id: Date.now(),
-      title,
-      description,
-    }
-
-    posts.push(newPost)
-    setTitle('')
-    setDescription('')
-  };
-
+function App() {  
   const [posts, setPosts] = useState([
     { id: 1, title: "JS1", body: "Descp " },
     { id: 2, title: "JS2", body: "Descp " },
@@ -31,19 +13,30 @@ function App() {
     { id: 5, title: "JS5", body: "Descp " },
   ]);
 
+  const [post, setPost] = useState({title: '', description: ''});
+
+
+  const addNewPosts = (e) => {
+    e.preventDefault();
+
+    setPosts([...posts, {...post, id: Date.now()}])
+    setPost({title: '', description: ''})
+  };
+
   return (
     <div className="App">
       <form className="form">
         <MyInput
-          value={title}
-          onChange={e => setTitle(e.target.value)}
+          value={post.title}
+          onChange={e => setPost({...post, title: e.target.value})}
           required
           type="text"
           placeholder="Title printsyka"
         />
         <MyInput
-          value={description}
-          onChange={e => setDescription(e.target.value)}
+          value={post.description}
+          onChange={e => setPost({...post, description: e.target.value})}
+
           required
           type="text"
           placeholder="Description"
