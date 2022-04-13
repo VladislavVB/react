@@ -1,0 +1,31 @@
+.myModal {
+  position: fixed;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  opacity: 0;
+  transition: .3s;
+  visibility: hidden;
+  background-color: rgba(0, 0, 0, 0.2);
+}
+
+.myModalContent {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 15px;
+  min-width: 300px;
+  margin: auto;
+}
+
+.myModal.active {
+  visibility: visible;
+  opacity: 1;
+}
